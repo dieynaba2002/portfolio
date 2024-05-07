@@ -4,13 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
     <title>Portfolio</title>
   </head>
   <body>
@@ -22,15 +18,15 @@
         </label>
         <input type="checkbox" name="check" id="check" />
         <ul>
-          <li><a href="#">Accueil</a></li>
+          <li><a href="#Accueil">Accueil</a></li>
           <li><a href="#Apropos">A propos</a></li>
           <li><a href="#Projet">Portfolio</a></li>
           <li><a href="#Service">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#Contact">Contact</a></li>
         </ul>
       </div>
     </nav>
-    <section class="section">
+    <section class="section" id="Accueil">
       <div class="section__container">
         <div class="content">
           <p class="subtitle">Salut</p>
@@ -38,14 +34,14 @@
             Je suis <span>Dieynaba<br />une</span> Developpeuse web
           </h1>
           <p class="description">
-            Bienvenue dans mon portfolio de développeur web ! Je suis Dieynaba,
-            un développeur web compétent et créatif, passionné par la création
+            Bienvenue dans mon portfolio de développeur web ! Je suis Dieynaba Coly,
+            une développeuse web compétente et créative, passionnée par la création
             de sites web beaux, réactifs et conviviaux. J'ai travaillé sur une
             variété de projets web, allant des blogs personnels aux plateformes
             de commerce électronique.
           </p>
           <div class="action__btns">
-            <a href="https://drive.google.com/drive/u/0/folders/17WCmRSjQA118WBPl9TgZfAEx6l7SGPag" class="portfolio" download="lgd.pdf">Telecharger cv</a>
+            <a href="https://drive.google.com/file/d/1j0YXSHCPzqT8zuzcbiMHFajF0MhjdXm-/view?usp=drive_link" class="portfolio" download="lgd.pdf">Telecharger cv</a>
           </div>
         </div>
         <div class="image">
@@ -58,7 +54,7 @@
     <section class="section-a-propos" id="Apropos">
       <div class="contain-apropos">
         <div class="text">
-          <img src="assets/IMG_E1566.JPG" alt="profile" />
+          <img src="assets/dieyna.png" alt="profile" />
         </div>
         <div class="section-paragraphe">
           <h1 class="titre">A propos de moi</h1>
@@ -113,8 +109,8 @@
               <div class="box" style="background-image:url(assets/sunnumbay.png)">
                   <div class="cover">
                       <h3 class="name">Sunnu Mbay</h3>
-                      <p class="title">Visiter le site</p>
-                      <div class="social"><a href="https://gestion-note-88602.web.app/"><i class="fa-solid fa-eye"></i></a></div>
+                      <p class="title">Voir le code source</p>
+                      <div class="social"><a href="https://github.com/dieynaba2002/sunu-mbaye"><i class="fa-solid fa-eye"></i></a></div>
                   </div>
               </div>
           </div>   
@@ -160,5 +156,45 @@
         </div>
       </div>
     </section>
+
+    <!-- Debut de la section contact -->
+    <section class="section-contact" id="Contact">
+      <h1 class="titre-projet">Contactez moi</h1>
+      <div class="container">
+        <div class="contact-info">
+            <h2>Information de contact </h2>
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:dieynabacoly51@gmail.com">dieynabacoly51@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> Téléphone: +221 77 7151760</p>
+            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/dieynaba-coly-1b2b0a223">Dieynaba Coly</a></p>
+            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/dieynaba2002">dieynaba2002</a></p>
+        </div>
+        <div class="contact-form">
+            <form action="mailto:dieynabacoly51@gmail.com" method="post" enctype="text/plain">
+                <div>
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message :</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+        </div>
+      </div>
+
+    </section>
+    <footer class="footer">
+      <div class="container">
+          <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+      </div>
+    </footer>
+
   </body>
 </html>
