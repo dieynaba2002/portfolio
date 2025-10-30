@@ -1,200 +1,915 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Portfolio</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav__content">
-        <div class="logo"><a href="#">Portfolio</a></div>
-        <label for="check" class="checkbox">
-          <i class="ri-menu-line"></i>
-        </label>
-        <input type="checkbox" name="check" id="check" />
-        <ul>
-          <li><a href="#Accueil">Accueil</a></li>
-          <li><a href="#Apropos">A propos</a></li>
-          <li><a href="#Projet">Portfolio</a></li>
-          <li><a href="#Service">Services</a></li>
-          <li><a href="#Contact">Contact</a></li>
-        </ul>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mama Dieynaba Coly - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9',
+            secondary: '#06b6d4',
+            dark: '#0f172a',
+            light: '#f8fafc'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background-color: #0ea5e9;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .hero-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+
+  <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <div class="flex-shrink-0">
+          <h1 class="text-2xl font-bold text-transparent bg-clip-text gradient-bg">MDC</h1>
+        </div>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="#accueil" class="nav-link active text-gray-700 hover:text-primary font-medium">Accueil</a>
+          <a href="#apropos" class="nav-link text-gray-700 hover:text-primary font-medium">À propos</a>
+          <a href="#portfolio" class="nav-link text-gray-700 hover:text-primary font-medium">Portfolio</a>
+          <a href="#services" class="nav-link text-gray-700 hover:text-primary font-medium">Services</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-primary font-medium">Contact</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
       </div>
-    </nav>
-    <section class="section" id="Accueil">
-      <div class="section__container">
-        <div class="content">
-          <p class="subtitle">Salut</p>
-          <h1 class="title">
-            Je suis <span>Dieynaba<br />une</span> Developpeuse web
-          </h1>
-          <p class="description">
-            Bienvenue dans mon portfolio de développeur web ! Je suis Dieynaba Coly,
-            une développeuse web compétente et créative, passionnée par la création
-            de sites web beaux, réactifs et conviviaux. J'ai travaillé sur une
-            variété de projets web, allant des blogs personnels aux plateformes
-            de commerce électronique.
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#accueil" class="block text-gray-700 hover:text-primary font-medium">Accueil</a>
+        <a href="#apropos" class="block text-gray-700 hover:text-primary font-medium">À propos</a>
+        <a href="#portfolio" class="block text-gray-700 hover:text-primary font-medium">Portfolio</a>
+        <a href="#services" class="block text-gray-700 hover:text-primary font-medium">Services</a>
+        <a href="#contact" class="block text-gray-700 hover:text-primary font-medium">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="accueil" class="pt-20 min-h-screen flex items-center relative overflow-hidden">
+    <div class="hero-shape w-96 h-96 bg-primary top-10 -right-20"></div>
+    <div class="hero-shape w-64 h-64 bg-secondary bottom-10 -left-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <p class="text-primary font-semibold text-lg">Bonjour, je suis</p>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+              Mama Dieynaba Coly
+            </h1>
+            <p class="text-2xl md:text-3xl text-gray-600 font-light">
+              Développeuse Web Fullstack
+            </p>
+          </div>
+
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Passionnée par la création d'expériences web modernes et intuitives.
+            Je transforme vos idées en solutions digitales performantes et élégantes.
           </p>
-          <div class="action__btns">
-            <a href="https://drive.google.com/file/d/1j0YXSHCPzqT8zuzcbiMHFajF0MhjdXm-/view?usp=drive_link" class="portfolio" download="lgd.pdf">Telecharger cv</a>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="assets/Mama_Dieynaba_Coly_CV.pdf" download="Mama_Dieynaba_Coly_CV"
+              class="btn-primary text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-download"></i>
+              Télécharger mon CV
+            </a>
+            <a href="#contact"
+              class="bg-gray-100 text-gray-800 px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition">
+              Me contacter
+            </a>
+          </div>
+
+          <div class="flex gap-4 pt-4">
+            <a href="https://www.linkedin.com/in/dieynaba-coly-1b2b0a223" target="_blank"
+              class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-primary hover:text-white transition">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/dieynaba2002" target="_blank"
+              class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-primary hover:text-white transition">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:dieynabacoly51@gmail.com"
+              class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-primary hover:text-white transition">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
         </div>
-        <div class="image">
-          <img src="assets/Group 35 (1).png" alt="profile" />
+
+        <div class="relative float-animation">
+          <div class="w-80 h-80 mx-auto rounded-full gradient-bg p-2">
+            <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+              <!-- <i class="fas fa-user text-9xl text-gray-400"></i> -->
+              <img src="assets/WhatsApp Image 2025-10-08 à 13.12.25_b5f7d133.jpg" alt="">
+
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!--Debut de la scetion A propos de moi  -->
-    <section class="section-a-propos" id="Apropos">
-      <div class="contain-apropos">
-        <div class="text">
-          <img src="assets/dieyna.png" alt="profile" />
+  <section id="apropos" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">À propos de moi</h2>
+        <div class="w-20 h-1 gradient-bg mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Développeuse Web Fullstack passionnée et créative, je me spécialise dans la création
+            d'applications web modernes et performantes. Avec une expertise en développement frontend
+            et backend, je maîtrise les technologies les plus récentes pour donner vie à vos projets.
+          </p>
+
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Mon approche combine esthétique, fonctionnalité et expérience utilisateur pour créer
+            des solutions digitales qui font la différence. Je suis également passionnée par l'UI/UX
+            design et la gestion de projet, ce qui me permet d'avoir une vision globale et cohérente
+            de chaque projet.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-6">
+            <div class="space-y-2">
+              <h3 class="font-semibold text-gray-900 text-lg">Compétences techniques</h3>
+              <ul class="space-y-2 text-gray-600">
+                <li><i class="fas fa-check text-primary mr-2"></i>HTML / CSS / JavaScript</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Angular</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Node.js / Nest js</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Bases de données</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-semibold text-gray-900 text-lg">Soft Skills</h3>
+              <ul class="space-y-2 text-gray-600">
+                <li><i class="fas fa-check text-primary mr-2"></i>Travail d'équipe</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Communication</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Résolution de problèmes</li>
+                <li><i class="fas fa-check text-primary mr-2"></i>Gestion du temps</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="section-paragraphe">
-          <h1 class="titre">A propos de moi</h1>
-          <p class="resume">
-            En tant que développeur Frontend, je suis dédié à la création de produits numériques de qualité, répondant aux besoins des entreprises et des utilisateurs. Je m'efforce constamment d'améliorer mes compétences pour offrir des solutions innovantes, en concevant des interfaces web fluides et esthétiques. Mon expérience diversifiée dans le développement frontend me permet d'apporter une expertise précieuse à tout projet. Je suis convaincu que mon engagement envers l'excellence et ma passion pour la création d'expériences utilisateur remarquables feront de moi un membre précieux de votre équipe.
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl text-center card-hover">
+            <i class="fas fa-lightbulb text-3xl text-primary mb-3"></i>
+            <h4 class="font-bold text-gray-900 mb-1">Apprentissage continu</h4>
+            <p class="text-sm text-gray-600">Toujours curieuse, j’apprends chaque jour pour améliorer mes compétences.
+            </p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl text-center card-hover">
+            <i class="fas fa-users text-3xl text-primary mb-3"></i>
+            <h4 class="font-bold text-gray-900 mb-1">Collaboration</h4>
+            <p class="text-sm text-gray-600">J’aime travailler en équipe et contribuer à la réussite collective.</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl text-center card-hover">
+            <i class="fas fa-bolt text-3xl text-primary mb-3"></i>
+            <h4 class="font-bold text-gray-900 mb-1">Dynamisme & créativité</h4>
+            <p class="text-sm text-gray-600">Je propose des solutions innovantes pour chaque projet.</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl text-center card-hover">
+            <i class="fas faTarget text-3xl text-primary mb-3"></i>
+            <h4 class="font-bold text-gray-900 mb-1">Objectifs & ambition</h4>
+            <p class="text-sm text-gray-600">Déterminée à évoluer vers des projets d’envergure et des rôles clés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Mon Portfolio</h2>
+        <div class="w-20 h-1 gradient-bg mx-auto rounded-full"></div>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+          Découvrez une sélection de mes projets récents et de mes réalisations les plus marquantes.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/yello-studio.png" alt="Project image" class="w-full  object-cover">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Projet Ed-Tech</h3>
+            <p class="text-gray-600">
+              Yello Studio c'est une plateforme edTech qui aide les enseignants à créer des cours en ligne interactifs
+              grace a l'IA.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Nest.js</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://yello-studio.web.app" class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/sunnumbay.png" alt="Project image" class="w-full object-cover">
+          </div>
+
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Projet E-commerce</h3>
+            <p class="text-gray-600">
+              SunuMbay une application de mise en relation entre les agriculteurs et les revendeurs.
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Laravel</span>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+              <a href="https://github.com/dieynaba2002/sunu-mbaye" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/FireShot Capture 044 - Accueil - sweet-dolphin-d1df36.netlify.app.png" alt="Project image"
+              class="w-full  object-cover">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Daaray Technologie</h3>
+            <p class="text-gray-600">
+              Site web pour une chaine you tube qui fait des tutoriels de programmation en Wolof.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://sweet-dolphin-d1df36.netlify.app" class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/Capture d’écran 2025-10-30 133744.png" alt="Project image" class="w-full  object-cover">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Site Vitrine</h3>
+            <p class="text-gray-600">
+              Site web moderne et responsive pour une entreprise de distribution de gaz butane.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">TailwindCSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://toubadistribution.com" class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/FireShot Capture 046 - Accueil - .png" alt="Project image" class="w-full  object-cover">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Site Web</h3>
+            <p class="text-gray-600">
+              Refonte du site web de Simplon, une entreprise sociale qui forme aux métiers du numérique.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="https://www.figma.com/design/BUZlnbOEtoOIu0SVSgXxI8/Untitled?node-id=0-1&p=f&t=8SQbHCldywEl73c0-0"
+                class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="assets/immobilier.png" alt="Project image" class="w-full  object-cover">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Site Web</h3>
+            <p class="text-gray-600">
+              Refonte du site de Senegindia, une agence immobilière au Sénégal.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">React</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Socket.io</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Redis</span>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://dieyna-immobilier-git-master-dieynaba2002.vercel.app"
+                class="text-primary hover:text-secondary transition">
+                <i class="fas fa-external-link-alt text-xl"></i>
+              </a>
+              <a href="#" class="text-primary hover:text-secondary transition">
+                <i class="fab fa-figma text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Mes Services</h2>
+        <div class="w-20 h-1 gradient-bg mx-auto rounded-full"></div>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+          Je vous accompagne dans la réalisation de vos projets digitaux avec expertise et passion.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-xl card-hover group">
+          <div
+            class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <i class="fas fa-code text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Développement Web</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Création d'applications web sur mesure, responsive et performantes. De la landing page
+            à l'application complexe, je développe des solutions adaptées à vos besoins.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li><i class="fas fa-check text-primary mr-2"></i>Sites web responsives</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Applications web (SPA)</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>API REST / GraphQL</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>E-commerce</li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-cyan-50 to-teal-50 p-8 rounded-xl card-hover group">
+          <div
+            class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <i class="fas fa-palette text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">UI/UX Design</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Conception d'interfaces utilisateur modernes et intuitives. Je crée des expériences
+            visuelles qui captivent et facilitent l'interaction avec vos produits digitaux.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li><i class="fas fa-check text-primary mr-2"></i>Maquettes Figma</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Prototypage interactif</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Design Systems</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Wireframing</li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal-50 to-green-50 p-8 rounded-xl card-hover group">
+          <div
+            class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <i class="fas fa-tasks text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Gestion de Projet</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Accompagnement complet dans la gestion de vos projets digitaux. Planification,
+            coordination et suivi pour garantir la réussite de vos objectifs.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li><i class="fas fa-check text-primary mr-2"></i>Méthodologie Agile</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Planification & Roadmap</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Coordination d'équipe</li>
+            <li><i class="fas fa-check text-primary mr-2"></i>Suivi & Reporting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-12 text-center text-white">
+        <h3 class="text-3xl font-bold mb-4">Prêt à démarrer votre projet ?</h3>
+        <p class="text-xl mb-8 opacity-90">
+          Discutons ensemble de vos besoins et donnons vie à vos idées.
+        </p>
+        <a href="#contact"
+          class="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition">
+          Contactez-moi maintenant
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Me Contacter</h2>
+        <div class="w-20 h-1 gradient-bg mx-auto rounded-full"></div>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+          Une question ? Un projet ? N'hésitez pas à me contacter, je serais ravie d'échanger avec vous.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Informations de Contact</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-envelope text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                  <a href="mailto:dieynabacoly51@gmail.com" class="text-primary hover:text-secondary">
+                    dieynabacoly51@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-phone text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Téléphone</h4>
+                  <a href="tel:+221777151760" class="text-primary hover:text-secondary">
+                    +221 77 715 1760
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fab fa-linkedin-in text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">LinkedIn</h4>
+                  <a href="https://www.linkedin.com/in/dieynaba-coly-1b2b0a223" target="_blank"
+                    class="text-primary hover:text-secondary">
+                    Dieynaba Coly
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fab fa-github text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">GitHub</h4>
+                  <a href="https://github.com/dieynaba2002" target="_blank" class="text-primary hover:text-secondary">
+                    dieynaba2002
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-lg">
+            <h4 class="font-semibold text-gray-900 mb-4">Disponibilité</h4>
+            <p class="text-gray-600">
+              Je suis actuellement disponible pour de nouveaux projets et collaborations.
+              N'hésitez pas à me contacter pour discuter de vos besoins.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Envoyez-moi un message</h3>
+
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
+              <input type="text" id="name" name="name" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                placeholder="Votre nom">
+            </div>
+
+            <div>
+              <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+              <input type="email" id="email" name="email" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                placeholder="votre@email.com">
+            </div>
+
+            <div>
+              <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
+              <input type="text" id="subject" name="subject" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                placeholder="Sujet de votre message">
+            </div>
+
+            <div>
+              <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+              <textarea id="message" name="message" rows="5" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none"
+                placeholder="Votre message..."></textarea>
+            </div>
+
+            <button type="submit"
+              class="w-full btn-primary text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i>
+              Envoyer le message
+            </button>
+          </form>
+
+          <div id="form-message" class="mt-4 hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text gradient-bg">MDC</h3>
+          <p class="text-gray-400">
+            Développeuse Web Fullstack passionnée par la création d'expériences digitales modernes.
           </p>
         </div>
-      </div>
-    </section>
-    <!-- Debut de mes projets -->
-    <section class="section-projets" id="Projet">
-      <div class="team-grid">
-        <h1 class="titre-projet">Mes projets</h1>
-        <div class="row people d-flex justify-content-center">
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/Accueil\ \(3\).png)">
-                  <div class="cover">
-                      <h3 class="name">CilaaBok</h3>
-                      <p class="title">Voir la maquette</p>
-                      <div class="social"><a href="https://www.figma.com/file/Gtn14G6y4mUWv1U6rrZvOg/silabok-project?type=design&node-id=226-10628&mode=design&t=GzVhFJb2Y3lazLBt-0"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/FireShot\ Capture\ 044\ -\ Accueil\ -\ sweet-dolphin-d1df36.netlify.app.png)">
-                  <div class="cover">
-                      <h3 class="name">Daraay Technologie</h3>
-                      <p class="title">Visiter le site</p>
-                      <div class="social"><a href="https://sweet-dolphin-d1df36.netlify.app/"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/FireShot\ Capture\ 045\ -\ GestionNotesG6\ -\ gestion-note-88602.web.app.png)">
-                  <div class="cover">
-                      <h3 class="name">Gestion note</h3>
-                      <p class="title">Visiter le site</p>
-                      <div class="social"><a href="https://gestion-note-88602.web.app/"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>  
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/FireShot\ Capture\ 046\ -\ Accueil\ -\ .png)">
-                  <div class="cover">
-                      <h3 class="name">Refonte Simplon</h3>
-                      <p class="title">Visiter le site</p>
-                      <div class="social"><a href="https://gestion-note-88602.web.app/"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>   
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/sunnumbay.png)">
-                  <div class="cover">
-                      <h3 class="name">Sunnu Mbay</h3>
-                      <p class="title">Voir le code source</p>
-                      <div class="social"><a href="https://github.com/dieynaba2002/sunu-mbaye"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>   
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(assets/immobilier.png)">
-                  <div class="cover">
-                      <h3 class="name">Site immobilier</h3>
-                      <p class="title">Visiter le site</p>
-                      <div class="social"><a href="https://dieyna-immobilier-git-master-dieynaba2002.vercel.app/"><i class="fa-solid fa-eye"></i></a></div>
-                  </div>
-              </div>
-          </div>          
-        </div>
-        
-      </div>
-      
-    </section>
 
-    <!-- Debut section service -->
-    <section class="section-service" id="Service">
-      <h1 class="titre-projet">Mes services</h1>
-      <div class="contain-service">
-        <div class="col-service">
-          <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4">
-            <i class="fa-solid fa-code"></i>
-            <h3 class="mt-4 h4">Developpement Web</h3>
-            <p class="text-center">Maîtrise des langages HTML, CSS et JavaScript. Expérimenté dans la conception de sites web réactifs, la construction d'interfaces conviviales et l'utilisation de frameworks modernes tels que Angular</p>
-          </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#accueil" class="hover:text-primary transition">Accueil</a></li>
+            <li><a href="#apropos" class="hover:text-primary transition">À propos</a></li>
+            <li><a href="#portfolio" class="hover:text-primary transition">Portfolio</a></li>
+            <li><a href="#services" class="hover:text-primary transition">Services</a></li>
+            <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
+          </ul>
         </div>
-        <div class="col-service">
-          <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4">
-            <i class="fa-solid fa-palette"></i>
-            <h3 class="mt-4 h4">Design</h3>
-            <p class="text-center">Je conçois des maquettes, des prototypes et des wireframes pour créer des interfaces attrayantes et intuitives, centrées sur l'utilisateur. Maîtrise des outils Adobe XD et Figma.</p>
-          </div>
-        </div>
-        <div class="col-service">
-          <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4">
-            <i class="fa-solid fa-list-check"></i> 
-            <h3 class="mt-4 h4">Gestion de projet</h3>
-            <p class="text-center">Je coordonne efficacement les équipes pour assurer la livraison en temps et en heure des projets. Expert en utilisation d'outils comme Trello.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Debut de la section contact -->
-    <section class="section-contact" id="Contact">
-      <h1 class="titre-projet">Contactez moi</h1>
-      <div class="container">
-        <div class="contact-info">
-            <h2>Information de contact </h2>
-            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:dieynabacoly51@gmail.com">dieynabacoly51@gmail.com</a></p>
-            <p><i class="fas fa-phone"></i> Téléphone: +221 77 7151760</p>
-            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/dieynaba-coly-1b2b0a223">Dieynaba Coly</a></p>
-            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/dieynaba2002">dieynaba2002</a></p>
-        </div>
-        <div class="contact-form">
-            <form action="mailto:dieynabacoly51@gmail.com" method="post" enctype="text/plain">
-                <div>
-                    <label for="nom">Nom :</label>
-                    <input type="text" id="nom" name="nom" required>
-                </div>
-                <div>
-                    <label for="email">Email :</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="message">Message :</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <div>
-                    <button type="submit">Envoyer</button>
-                </div>
-            </form>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Suivez-moi</h4>
+          <div class="flex gap-4">
+            <a href="https://www.linkedin.com/in/dieynaba-coly-1b2b0a223" target="_blank"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/dieynaba2002" target="_blank"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:dieynabacoly51@gmail.com"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-    </section>
-    <footer class="footer">
-      <div class="container">
-          <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Mama Dieynaba Coly. Tous droits réservés.</p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-  </body>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const supabaseUrl = 'https://xpaoptxawdsxywbtijfa.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhwYW9wdHhhd2RzeHl3YnRpamZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MDUxODQsImV4cCI6MjA3NzM4MTE4NH0.FwURW47_Sc8DwHHPJNzn4JCEIWQrUEPc-A6bBVPyyAw';
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    //     e.preventDefault();
+
+    //     const formMessage = document.getElementById('form-message');
+    //     const submitButton = e.target.querySelector('button[type="submit"]');
+    //     const formData = new FormData(e.target);
+
+    //     const contactData = {
+    //         name: formData.get('name'),
+    //         email: formData.get('email'),
+    //         subject: formData.get('subject'),
+    //         message: formData.get('message')
+    //     };
+
+    //     submitButton.disabled = true;
+    //     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+
+    //     try {
+    //         const { error: dbError } = await supabase
+    //             .from('contact_messages')
+    //             .insert([contactData]);
+
+    //         if (dbError) {
+    //             console.error('Database error:', dbError);
+    //         }
+
+    //         const response = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${supabaseAnonKey}`
+    //             },
+    //             body: JSON.stringify(contactData)
+    //         });
+
+    //         if (response.ok) {
+    //             formMessage.className = 'mt-4 p-4 bg-green-100 text-green-700 rounded-lg';
+    //             formMessage.textContent = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.';
+    //             e.target.reset();
+    //         } else {
+    //             formMessage.className = 'mt-4 p-4 bg-yellow-100 text-yellow-700 rounded-lg';
+    //             formMessage.textContent = 'Votre message a été enregistré. L\'email sera envoyé prochainement.';
+    //             e.target.reset();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         formMessage.className = 'mt-4 p-4 bg-yellow-100 text-yellow-700 rounded-lg';
+    //         formMessage.textContent = 'Votre message a été enregistré. Merci de votre patience.';
+    //         e.target.reset();
+    //     }
+
+    //     formMessage.classList.remove('hidden');
+    //     submitButton.disabled = false;
+    //     submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+
+    //     setTimeout(() => {
+    //         formMessage.classList.add('hidden');
+    //     }, 5000);
+    // });
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const formMessage = document.getElementById('form-message');
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+
+      emailjs.send("service_87jbddm", "template_t3blq7h", {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        subject: e.target.subject.value,
+        message: e.target.message.value
+      })
+        .then(() => {
+          formMessage.className = "mt-4 p-4 bg-green-100 text-green-700 rounded-lg";
+          formMessage.textContent = "✅ Message envoyé avec succès !";
+          e.target.reset();
+        })
+        .catch((error) => {
+          formMessage.className = "mt-4 p-4 bg-red-100 text-red-700 rounded-lg";
+          formMessage.textContent = "❌ Une erreur est survenue. Réessayez plus tard.";
+          console.error(error);
+        })
+        .finally(() => {
+          formMessage.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer';
+
+          setTimeout(() => formMessage.classList.add("hidden"), 5000);
+        });
+    });
+
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    import emailjs from 'https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js';
+
+    emailjs.init("J_7dDs8QX1-WTCb7n");
+
+  </script>
+  <!-- <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formMessage = document.getElementById('form-message');
+            formMessage.className = 'mt-4 p-4 bg-green-100 text-green-700 rounded-lg';
+            formMessage.textContent = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.';
+            formMessage.classList.remove('hidden');
+
+            e.target.reset();
+
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script> -->
+</body>
+
 </html>
